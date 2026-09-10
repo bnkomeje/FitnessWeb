@@ -1,75 +1,25 @@
-# React + TypeScript + Vite
+# FitnessWeb
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+FitnessWeb is a fitness application designed to help users explore workouts, set fitness goals, and access useful fitness information.
 
-Currently, two official plugins are available:
+## Project Team
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+### Team Name
 
-## React Compiler
+Flames
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+### Team Members
 
-## Expanding the ESLint configuration
+- Bosco Nkomeje
+- Taranpreet Singh
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+## Project General Description
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+FitnessWeb provides users with fitness-related information and tools to help them organize and improve their fitness activities.
 
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
+### User Stories
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-
-```
-
-You can also install [eslint-plugin-react-x](https://npmx.dev/package/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://npmx.dev/package/eslint-plugin-react-dom) for React-specific lint rules:
-
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
-
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-
-```
+- As a user, I want to view different workouts so that I can choose exercises that fit my fitness needs.
+- As a user, I want to set fitness goals so that I can keep track of what I want to achieve.
+- As a user, I want to view fitness tips so that I can learn ways to improve my fitness routine.
+- As a user, I want to view fitness equipment so that I can learn what equipment can be used for different exercises.
