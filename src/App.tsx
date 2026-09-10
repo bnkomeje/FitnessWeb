@@ -1,6 +1,7 @@
 import './App.css'
 import WorkoutSection from './components/workout-section/WorkoutSection'
 import GoalSection from './components/goal-section/GoalSection'
+import FitnessTips from './components/fitness-tips/FitnessTips'
 
 function App() {
   return (
@@ -17,6 +18,7 @@ function App() {
       <main>
         <WorkoutSection />
         <GoalSection />
+        <FitnessTips />
       </main>
 
       <footer>
