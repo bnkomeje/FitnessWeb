@@ -23,3 +23,17 @@ FitnessWeb provides users with fitness-related information and tools to help the
 - As a user, I want to set fitness goals so that I can keep track of what I want to achieve.
 - As a user, I want to view fitness tips so that I can learn ways to improve my fitness routine.
 - As a user, I want to view fitness equipment so that I can learn what equipment can be used for different exercises.
+
+### team members contribution
+
+#### 1. Bosco Nkomeje
+created Github repository and set up project structure
+created project README.md
+deplyed fitnessWeb to vercel
+worked on 2 commponents namely fitness workout and fitness goals.
+
+#### 2. Taranpreet Singh 
+Worked on the fitness tips component.
+crated app styles and css
+worked on STyleguide document
+shared kanban roles.
