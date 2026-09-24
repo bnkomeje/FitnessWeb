@@ -1,21 +1,62 @@
-function WorkoutSection() {
-  const workouts = [
-    "Running",
-    "Push-ups",
-    "Squats",
-    "Walking"
-  ]
+import WorkoutCard from '../workout-card/WorkoutCard'
+import type { Workout } from '../../types/Workout'
+
+type WorkoutSectionProps = {
+  workouts: Workout[]
+
+  setWorkouts:
+    React.Dispatch<React.SetStateAction<Workout[]>>
+
+  setCompletedWorkouts:
+    React.Dispatch<React.SetStateAction<number>>
+}
+
+function WorkoutSection({
+  workouts,
+  setWorkouts,
+  setCompletedWorkouts
+}: WorkoutSectionProps) {
+
+  function removeWorkout(id: number) {
+
+    setWorkouts(
+      workouts.filter(
+        (workout) => workout.id !== id
+      )
+    )
+  }
+
+  function completeWorkout() {
+
+    setCompletedWorkouts(
+      (currentTotal) => currentTotal + 1
+    )
+  }
 
   return (
-    <section id="workouts" className="workout-section">
-      <h2>Workouts</h2>
-      <p>Choose from our available workouts.</p>
+    <section className="workout-section">
 
-      <ul>
+      <h2>Your Workouts</h2>
+
+      <p>
+        Choose from your available workouts.
+      </p>
+
+      <div className="workout-list">
+
         {workouts.map((workout) => (
-          <li key={workout}>{workout}</li>
+
+          <WorkoutCard
+            key={workout.id}
+            workout={workout}
+            removeWorkout={removeWorkout}
+            completeWorkout={completeWorkout}
+          />
+
         ))}
-      </ul>
+
+      </div>
+
     </section>
   )
 }
