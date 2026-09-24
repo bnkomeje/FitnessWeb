@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import FitnessTipsForm from '../components/fitness-tips-form/FitnessTipsForm'
 
+// Page for fitness tips.
 function FitnessTipsPage() {
   const [newTip, setNewTip] = useState('')
 

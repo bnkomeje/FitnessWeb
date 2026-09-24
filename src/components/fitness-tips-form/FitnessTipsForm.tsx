@@ -3,6 +3,7 @@ type FitnessTipsFormProps = {
   setNewTip: (tip: string) => void
 }
 
+// Form for entering a fitness tip.
 function FitnessTipsForm({ newTip, setNewTip }: FitnessTipsFormProps) {
   return (
     <form>
