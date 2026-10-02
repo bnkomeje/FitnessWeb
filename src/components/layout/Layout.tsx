@@ -11,10 +11,11 @@ function Layout() {
 
           <nav>
             <NavLink to="/">Home</NavLink>
+            <NavLink to="/">Search</NavLink>
             <NavLink to="/workouts">Workouts</NavLink>
-            <NavLink to="#fitness-tips">Fitness tips</NavLink>
-            <NavLink to="#Login">Login</NavLink>
-            <NavLink to="#Help">Help</NavLink>
+            <NavLink to="/">Fitness tips</NavLink>
+            <NavLink to="/">Login</NavLink>
+            <NavLink to="/">Help</NavLink>
           </nav>
         </div>
       </header>
@@ -30,6 +31,8 @@ function Layout() {
 
         <p>
           Build strength. Stay active. Stay consistent.
+
+          Team Members: Bosco Nkomeje and Taranpreet Singh
         </p>
       </footer>
     </>

@@ -5,11 +5,18 @@ import './App.css'
 import Layout from './components/layout/Layout'
 import Home from './pages/Home'
 import WorkoutPage from './pages/WorkoutPage'
+import AddWorkoutPage from './pages/AddWorkoutPage'
+
+import type { Workout } from './types/Workout'
+import { initialWorkouts } from './data/workouts'
 
 function App() {
 
   const [completedWorkouts, setCompletedWorkouts] =
     useState(0)
+
+  const [workouts, setWorkouts] =
+    useState<Workout[]>(initialWorkouts)
 
   return (
     <Routes>
@@ -25,8 +32,20 @@ function App() {
           path="workouts"
           element={
             <WorkoutPage
+              workouts={workouts}
+              setWorkouts={setWorkouts}
               completedWorkouts={completedWorkouts}
               setCompletedWorkouts={setCompletedWorkouts}
+            />
+          }
+        />
+
+        <Route
+          path="add-workout"
+          element={
+            <AddWorkoutPage
+              workouts={workouts}
+              setWorkouts={setWorkouts}
             />
           }
         />
