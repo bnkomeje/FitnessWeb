@@ -8,6 +8,7 @@ import SearchPage from './pages/SearchPage'
 import WorkoutPage from './pages/WorkoutPage'
 import AddWorkoutPage from './pages/AddWorkoutPage'
 import HelpPage from './pages/HelpPage'
+import FitnessTipsPage from './pages/FitnessTipsPage'
 
 import type { Workout } from './types/Workout'
 import { initialWorkouts } from './data/workouts'
@@ -50,6 +51,11 @@ function App() {
             />
           }
         />
+
+        <Route
+          path="fitness-tips"
+          element={<FitnessTipsPage />}
+          />
 
         <Route
           path="add-workout"
