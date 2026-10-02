@@ -37,3 +37,11 @@ Worked on the fitness tips component.
 crated app styles and css
 worked on STyleguide document
 shared kanban roles.
+
+**Sprint 2**
+- Created the Fitness Tips feature page.
+- Created a form component to add fitness tips.
+- Added functionality to add and remove fitness tips.
+- Connected the Fitness Tips page to the navigation.
+- Added shared state between the Fitness Tips and Workouts pages.
+- Updated the Help page with Fitness Tips instructions.
