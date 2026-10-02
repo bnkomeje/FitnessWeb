@@ -2,7 +2,9 @@ import { useState } from 'react'
 import FitnessTipsForm from '../components/fitness-tips-form/FitnessTipsForm'
 import FitnessTipItem from '../components/fitness-tip-item/FitnessTipItem'
 
-// Page for fitness tips.
+/**
+ * Shows the fitness tips page.
+ */
 type FitnessTipsPageProps = {
   completedWorkouts: number
   setCompletedWorkouts: React.Dispatch<React.SetStateAction<number>>
@@ -20,7 +22,9 @@ function FitnessTipsPage({
     'Get enough sleep'
   ])
 
-  // Adds a new fitness tip to the list.
+/**
+ * Adds a new tip to the list.
+ */
   const addTip = () => {
     if (newTip.trim() !== '') {
       setTips([...tips, newTip])
@@ -28,7 +32,9 @@ function FitnessTipsPage({
     }
   }
 
-  // Removes a fitness tip from the list.
+/**
+ * Removes a tip from the list.
+ */
   const removeTip = (indexToRemove: number) => {
     setTips(tips.filter((_, index) => index !== indexToRemove))
   }

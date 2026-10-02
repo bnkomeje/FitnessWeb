@@ -4,7 +4,9 @@ type FitnessTipsFormProps = {
   onAdd: () => void
 }
 
-// Form for entering a fitness tip.
+/**
+ * Shows the form for adding a fitness tip.
+ */
 function FitnessTipsForm({ newTip, setNewTip, onAdd }: FitnessTipsFormProps) {
   return (
     <form>

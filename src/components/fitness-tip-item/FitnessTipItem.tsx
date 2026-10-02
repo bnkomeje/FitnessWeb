@@ -3,7 +3,9 @@ type FitnessTipItemProps = {
   onRemove: () => void
 }
 
-// Displays one fitness tip with a remove button.
+/**
+ * Shows one fitness tip with a remove button.
+ */
 function FitnessTipItem({ tip, onRemove }: FitnessTipItemProps) {
   return (
     <li>
