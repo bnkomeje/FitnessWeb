@@ -2,6 +2,7 @@ import { useState } from 'react'
 import { Routes, Route } from 'react-router-dom'
 import './App.css'
 
+import HelpPage from './pages/HelpPage'
 import Layout from './components/layout/Layout'
 import Home from './pages/Home'
 import WorkoutPage from './pages/WorkoutPage'
@@ -48,6 +49,11 @@ function App() {
               setWorkouts={setWorkouts}
             />
           }
+        />
+
+        <Route
+          path="help"
+          element={<HelpPage />}
         />
 
       </Route>
