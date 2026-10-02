@@ -8,6 +8,7 @@ import SearchPage from './pages/SearchPage'
 import WorkoutPage from './pages/WorkoutPage'
 import AddWorkoutPage from './pages/AddWorkoutPage'
 import HelpPage from './pages/HelpPage'
+import FitnessTipsPage from './pages/FitnessTipsPage'
 
 import type { Workout } from './types/Workout'
 import { initialWorkouts } from './data/workouts'
@@ -45,6 +46,16 @@ function App() {
             <WorkoutPage
               workouts={workouts}
               setWorkouts={setWorkouts}
+              completedWorkouts={completedWorkouts}
+              setCompletedWorkouts={setCompletedWorkouts}
+            />
+          }
+        />
+
+        <Route
+          path="fitness-tips"
+          element={
+            <FitnessTipsPage
               completedWorkouts={completedWorkouts}
               setCompletedWorkouts={setCompletedWorkouts}
             />

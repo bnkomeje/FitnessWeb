@@ -47,6 +47,10 @@ nav a:hover {
   color: #b6ff3b;
 }
 
+nav a.active {
+  color: #b6ff3b;
+}
+
 nav a:focus-visible,
 .primary-button:focus-visible,
 .secondary-button:focus-visible {

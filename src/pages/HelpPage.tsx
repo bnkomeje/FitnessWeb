@@ -34,6 +34,21 @@ function HelpPage() {
           can watch them directly on the website.
         </p>
 
+        <h2>💡 How Fitness Tips Work</h2>
+        
+        <p>
+          Go to the Fitness Tips page to view helpful fitness tips.
+          You can also enter your own tip and click Add Tip to add it
+          to the list.
+          
+        </p>
+        
+        <p>
+          If you no longer want a fitness tip, click the Remove button
+          beside it. The list will update right away.
+          
+        </p>
+
       </div>
 
     </main>
