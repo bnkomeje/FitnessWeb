@@ -2,11 +2,12 @@ import { useState } from 'react'
 import { Routes, Route } from 'react-router-dom'
 import './App.css'
 
-import HelpPage from './pages/HelpPage'
 import Layout from './components/layout/Layout'
 import Home from './pages/Home'
+import SearchPage from './pages/SearchPage'
 import WorkoutPage from './pages/WorkoutPage'
 import AddWorkoutPage from './pages/AddWorkoutPage'
+import HelpPage from './pages/HelpPage'
 
 import type { Workout } from './types/Workout'
 import { initialWorkouts } from './data/workouts'
@@ -27,6 +28,15 @@ function App() {
         <Route
           index
           element={<Home />}
+        />
+
+        <Route
+          path="search"
+          element={
+            <SearchPage
+              workouts={workouts}
+            />
+          }
         />
 
         <Route

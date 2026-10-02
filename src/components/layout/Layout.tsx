@@ -11,7 +11,7 @@ function Layout() {
 
           <nav>
             <NavLink to="/">Home</NavLink>
-            <NavLink to="/">Search</NavLink>
+            <NavLink to="/search">Search</NavLink>
             <NavLink to="/workouts">Workouts</NavLink>
             <NavLink to="/">Fitness tips</NavLink>
             <NavLink to="/">Login</NavLink>
