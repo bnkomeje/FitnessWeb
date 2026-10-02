@@ -54,8 +54,13 @@ function App() {
 
         <Route
           path="fitness-tips"
-          element={<FitnessTipsPage />}
-          />
+          element={
+            <FitnessTipsPage
+              completedWorkouts={completedWorkouts}
+              setCompletedWorkouts={setCompletedWorkouts}
+            />
+          }
+        />
 
         <Route
           path="add-workout"

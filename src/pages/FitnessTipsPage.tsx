@@ -3,7 +3,15 @@ import FitnessTipsForm from '../components/fitness-tips-form/FitnessTipsForm'
 import FitnessTipItem from '../components/fitness-tip-item/FitnessTipItem'
 
 // Page for fitness tips.
-function FitnessTipsPage() {
+type FitnessTipsPageProps = {
+  completedWorkouts: number
+  setCompletedWorkouts: React.Dispatch<React.SetStateAction<number>>
+}
+
+function FitnessTipsPage({
+  completedWorkouts,
+  setCompletedWorkouts
+}: FitnessTipsPageProps) {
   const [newTip, setNewTip] = useState('')
 
   const [tips, setTips] = useState<string[]>([
@@ -29,6 +37,15 @@ function FitnessTipsPage() {
     <main>
       <h1>Fitness Tips</h1>
       <p>Simple tips to help you stay active and healthy.</p>
+
+      <p>Completed Workouts: {completedWorkouts}</p>
+
+      <button
+        type="button"
+        onClick={() => setCompletedWorkouts(completedWorkouts + 1)}
+      >
+        Add Completed Workout
+      </button>
 
       <FitnessTipsForm
         newTip={newTip}
