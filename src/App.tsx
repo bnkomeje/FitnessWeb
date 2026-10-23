@@ -1,86 +1,150 @@
-import { useState } from 'react'
-import { Routes, Route } from 'react-router-dom'
-import './App.css'
 
-import Layout from './components/layout/Layout'
-import Home from './pages/Home'
-import SearchPage from './pages/SearchPage'
-import WorkoutPage from './pages/WorkoutPage'
-import AddWorkoutPage from './pages/AddWorkoutPage'
-import HelpPage from './pages/HelpPage'
-import FitnessTipsPage from './pages/FitnessTipsPage'
+import type { Dispatch, SetStateAction } from 'react'
+import type { Workout } from '../../types/Workout'
+import { useWorkouts } from '../../hooks/useWorkouts'
 
-import type { Workout } from './types/Workout'
-import { initialWorkouts } from './data/workouts'
+type WorkoutSectionProps = {
+  workouts: Workout[]
+  setCompletedWorkouts: Dispatch<SetStateAction<number>>
+}
 
-function App() {
+/**
+ * WorkoutSection displays the workout list and videos.
+ * It uses useWorkouts to remove workouts through
+ * the service and repository.
+ */
+function WorkoutSection({
+  workouts,
+  setCompletedWorkouts
+}: WorkoutSectionProps) {
+  const { removeWorkout } = useWorkouts()
 
-  const [completedWorkouts, setCompletedWorkouts] =
-    useState(0)
+  function completeWorkout() {
+    setCompletedWorkouts(total => total + 1)
+  }
 
-  const [workouts, setWorkouts] =
-    useState<Workout[]>(initialWorkouts)
+  function getYouTubeEmbedUrl(videoUrl: string): string {
+    if (!videoUrl) {
+      return ''
+    }
+
+    try {
+      const url = new URL(videoUrl)
+      let videoId = ''
+
+      if (url.hostname === 'youtu.be' ||
+          url.hostname === 'www.youtu.be') {
+        videoId = url.pathname.slice(1)
+      } else if (
+        url.pathname.startsWith('/shorts/') ||
+        url.pathname.startsWith('/embed/')
+      ) {
+        videoId = url.pathname.split('/')[2] ?? ''
+      } else if (
+        url.hostname === 'youtube.com' ||
+        url.hostname === 'www.youtube.com' ||
+        url.hostname === 'm.youtube.com'
+      ) {
+        videoId = url.searchParams.get('v') ?? ''
+      }
+
+      return videoId
+        ? `https://www.youtube.com/embed/${videoId}`
+        : ''
+    } catch {
+      return ''
+    }
+  }
 
   return (
-    <Routes>
+    <section className="workout-section">
+      <h2>Your Workouts</h2>
 
-      <Route path="/" element={<Layout />}>
+      <p>Choose from your available workouts.</p>
 
-        <Route
-          index
-          element={<Home />}
-        />
+      <div className="workout-table-wrapper">
+        <table className="workout-table">
+          <thead>
+            <tr>
+              <th>Workout</th>
+              <th>Video</th>
+              <th>Actions</th>
+            </tr>
+          </thead>
 
-        <Route
-          path="search"
-          element={
-            <SearchPage
-              workouts={workouts}
-            />
-          }
-        />
+          <tbody>
+            {workouts.map(workout => (
+              <tr key={workout.id}>
+                <td>{workout.name}</td>
 
-        <Route
-          path="workouts"
-          element={
-            <WorkoutPage
-              workouts={workouts}
-              setWorkouts={setWorkouts}
-              completedWorkouts={completedWorkouts}
-              setCompletedWorkouts={setCompletedWorkouts}
-            />
-          }
-        />
+                <td>
+                  {getYouTubeEmbedUrl(workout.videoUrl)
+                    ? 'Available'
+                    : 'No Video'}
+                </td>
 
-        <Route
-          path="fitness-tips"
-          element={
-            <FitnessTipsPage
-              completedWorkouts={completedWorkouts}
-              setCompletedWorkouts={setCompletedWorkouts}
-            />
-          }
-        />
+                <td>
+                  <div className="workout-actions">
+                    <button
+                      type="button"
+                      onClick={completeWorkout}
+                    >
+                      ✅ Complete
+                    </button>
 
-        <Route
-          path="add-workout"
-          element={
-            <AddWorkoutPage
-              workouts={workouts}
-              setWorkouts={setWorkouts}
-            />
-          }
-        />
+                    <button
+                      type="button"
+                      onClick={() => removeWorkout(workout.id)}
+                    >
+                      🗑️ Remove
+                    </button>
+                  </div>
+                </td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
 
-        <Route
-          path="help"
-          element={<HelpPage />}
-        />
+      <div className="exercise-videos">
+        <h2>Exercise Videos</h2>
 
-      </Route>
+        <p>
+          Watch the exercises without leaving the website.
+        </p>
 
-    </Routes>
+        <div className="video-grid">
+          {workouts.map(workout => {
+            const embedUrl = getYouTubeEmbedUrl(
+              workout.videoUrl
+            )
+
+            if (!embedUrl) {
+              return null
+            }
+
+            return (
+              <div
+                className="video-card"
+                key={workout.id}
+              >
+                <h3>{workout.name}</h3>
+
+                <div className="video-frame">
+                  <iframe
+                    src={embedUrl}
+                    title={`${workout.name} exercise video`}
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                    allowFullScreen
+                  />
+                </div>
+              </div>
+            )
+          })}
+        </div>
+      </div>
+    </section>
   )
 }
 
-export default App
+export default WorkoutSection
