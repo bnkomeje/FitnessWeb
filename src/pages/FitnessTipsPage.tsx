@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import FitnessTipsForm from '../components/fitness-tips-form/FitnessTipsForm'
 import FitnessTipItem from '../components/fitness-tip-item/FitnessTipItem'
+import { validateFitnessTip } from '../services/fitnessTipsService'
 
 /**
  * Shows the fitness tips page.
@@ -25,12 +26,19 @@ function FitnessTipsPage({
 /**
  * Adds a new tip to the list.
  */
+  
   const addTip = () => {
-    if (newTip.trim() !== '') {
-      setTips([...tips, newTip])
+    try {
+      const tip = validateFitnessTip(newTip)
+      setTips([...tips, tip])
       setNewTip('')
+    } catch (error) {
+      if (error instanceof Error) {
+        alert(error.message)
+      }
     }
   }
+
 
 /**
  * Removes a tip from the list.
