@@ -21,6 +21,12 @@ function App() {
   const [workouts, setWorkouts] =
     useState<Workout[]>(initialWorkouts)
 
+  const [tips, setTips] = useState<string[]>([
+    'Stay hydrated',
+    'Warm up before exercising',
+    'Get enough sleep'
+  ])
+
   return (
     <Routes>
 
@@ -58,7 +64,9 @@ function App() {
             <FitnessTipsPage
               completedWorkouts={completedWorkouts}
               setCompletedWorkouts={setCompletedWorkouts}
-            />
+              tips={tips}
+              setTips={setTips}
+          />
           }
         />
 

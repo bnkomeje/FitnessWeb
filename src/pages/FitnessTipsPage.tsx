@@ -1,37 +1,39 @@
-import { useState } from 'react'
+
+import { useFormInput } from '../hooks/useFormInput'
 import FitnessTipsForm from '../components/fitness-tips-form/FitnessTipsForm'
 import FitnessTipItem from '../components/fitness-tip-item/FitnessTipItem'
 import { validateFitnessTip } from '../services/fitnessTipsService'
 
-/**
- * Shows the fitness tips page.
- */
 type FitnessTipsPageProps = {
   completedWorkouts: number
   setCompletedWorkouts: React.Dispatch<React.SetStateAction<number>>
+  tips: string[]
+  setTips: React.Dispatch<React.SetStateAction<string[]>>
 }
 
+/**
+ * Shows the fitness tips page
+ */
 function FitnessTipsPage({
   completedWorkouts,
-  setCompletedWorkouts
+  setCompletedWorkouts,
+  tips,
+  setTips
 }: FitnessTipsPageProps) {
-  const [newTip, setNewTip] = useState('')
+  const {
+    value: newTip,
+    setValue: setNewTip,
+    clearValue
+  } = useFormInput('')
 
-  const [tips, setTips] = useState<string[]>([
-    'Stay hydrated',
-    'Warm up before exercising',
-    'Get enough sleep'
-  ])
-
-/**
- * Adds a new tip to the list.
- */
-  
+  /**
+   * Adds a valid fitness tip
+   */
   const addTip = () => {
     try {
       const tip = validateFitnessTip(newTip)
       setTips([...tips, tip])
-      setNewTip('')
+      clearValue()
     } catch (error) {
       if (error instanceof Error) {
         alert(error.message)
@@ -39,10 +41,9 @@ function FitnessTipsPage({
     }
   }
 
-
-/**
- * Removes a tip from the list.
- */
+  /**
+   * Removes a fitness tip
+   */
   const removeTip = (indexToRemove: number) => {
     setTips(tips.filter((_, index) => index !== indexToRemove))
   }
@@ -67,7 +68,6 @@ function FitnessTipsPage({
         onAdd={addTip}
       />
 
-      {/* Displays all fitness tips. */}
       <ul>
         {tips.map((tip, index) => (
           <FitnessTipItem
