@@ -13,7 +13,7 @@ import FitnessTipsPage from './pages/FitnessTipsPage'
 import type { Workout } from './types/Workout'
 import { initialWorkouts } from './data/workouts'
 import GoalsPage from './pages/GoalsPage'
-
+import { loadFitnessTips } from './services/fitnessTipsService'
 function App() {
 
   const [completedWorkouts, setCompletedWorkouts] =
@@ -24,11 +24,7 @@ function App() {
   
   const [goals, setGoals] = useState<string[]>([])  
 
-  const [tips, setTips] = useState<string[]>([
-    'Stay hydrated',
-    'Warm up before exercising',
-    'Get enough sleep'
-  ])
+  const [tips, setTips] = useState<string[]>(loadFitnessTips)
 
   return (
     <Routes>

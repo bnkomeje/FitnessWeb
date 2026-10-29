@@ -1,3 +1,10 @@
+
+import { getFitnessTips } from '../repositories/fitnessTipsRepository'
+
+/**
+ * Checks if a fitness tip is valid
+ * Returns the cleaned tip
+ */
 export function validateFitnessTip(input: string): string {
   const tip = input.trim()
 
@@ -6,4 +13,11 @@ export function validateFitnessTip(input: string): string {
   }
 
   return tip
+}
+
+/**
+ * Gets fitness tips from the repository
+ */
+export function loadFitnessTips(): string[] {
+  return getFitnessTips()
 }
