@@ -1,3 +1,6 @@
+
+import { useFormInput } from '../../hooks/useFormInput'
+
 type WorkoutFormProps = {
   newWorkout: string
   setNewWorkout:
@@ -17,22 +20,26 @@ function WorkoutForm({
   setVideoUrl,
   addWorkout
 }: WorkoutFormProps) {
+  const {
+    value: workoutName,
+    setValue: setWorkoutName
+  } = useFormInput(newWorkout)
 
   function handleSubmit(
     event: React.FormEvent<HTMLFormElement>
   ) {
     event.preventDefault()
 
-    if (newWorkout.trim() === '') {
+    if (workoutName.trim() === '') {
       return
     }
 
+    setNewWorkout(workoutName)
     addWorkout()
   }
 
   return (
     <form onSubmit={handleSubmit}>
-
       <h3>Add a Workout</h3>
 
       <div>
@@ -43,10 +50,11 @@ function WorkoutForm({
         <input
           id="workout-name"
           type="text"
-          value={newWorkout}
-          onChange={(event) =>
+          value={workoutName}
+          onChange={(event) => {
+            setWorkoutName(event.target.value)
             setNewWorkout(event.target.value)
-          }
+          }}
           placeholder="Example: Push-ups"
           required
         />
@@ -68,14 +76,11 @@ function WorkoutForm({
         />
       </div>
 
-      <p>
-        You are adding: {newWorkout}
-      </p>
+      <p>You are adding: {workoutName}</p>
 
       <button type="submit">
         Add Workout
       </button>
-
     </form>
   )
 }
