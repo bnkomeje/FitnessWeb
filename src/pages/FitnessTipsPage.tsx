@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useFormInput } from '../hooks/useFormInput'
 import FitnessTipsForm from '../components/fitness-tips-form/FitnessTipsForm'
 import FitnessTipItem from '../components/fitness-tip-item/FitnessTipItem'
 
@@ -8,19 +8,22 @@ import FitnessTipItem from '../components/fitness-tip-item/FitnessTipItem'
 type FitnessTipsPageProps = {
   completedWorkouts: number
   setCompletedWorkouts: React.Dispatch<React.SetStateAction<number>>
+  tips: string[]
+  setTips: React.Dispatch<React.SetStateAction<string[]>>
 }
 
 function FitnessTipsPage({
   completedWorkouts,
-  setCompletedWorkouts
+  setCompletedWorkouts,
+  tips,
+  setTips
 }: FitnessTipsPageProps) {
-  const [newTip, setNewTip] = useState('')
+  const {
+    value: newTip,
+    setValue: setNewTip,
+    clearValue
+  } = useFormInput('')
 
-  const [tips, setTips] = useState<string[]>([
-    'Stay hydrated',
-    'Warm up before exercising',
-    'Get enough sleep'
-  ])
 
 /**
  * Adds a new tip to the list.
@@ -28,7 +31,7 @@ function FitnessTipsPage({
   const addTip = () => {
     if (newTip.trim() !== '') {
       setTips([...tips, newTip])
-      setNewTip('')
+      clearValue()
     }
   }
 
