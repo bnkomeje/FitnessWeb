@@ -12,6 +12,7 @@ import FitnessTipsPage from './pages/FitnessTipsPage'
 
 import type { Workout } from './types/Workout'
 import { initialWorkouts } from './data/workouts'
+import GoalsPage from './pages/GoalsPage'
 
 function App() {
 
@@ -20,6 +21,8 @@ function App() {
 
   const [workouts, setWorkouts] =
     useState<Workout[]>(initialWorkouts)
+  
+  const [goals, setGoals] = useState<string[]>([])  
 
   const [tips, setTips] = useState<string[]>([
     'Stay hydrated',
@@ -83,6 +86,16 @@ function App() {
         <Route
           path="help"
           element={<HelpPage />}
+        />
+
+        <Route
+          path="goals"
+          element={
+            <GoalsPage
+              goals={goals}
+              setGoals={setGoals}
+            />
+          }
         />
 
       </Route>
