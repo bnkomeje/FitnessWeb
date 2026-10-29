@@ -28,12 +28,19 @@ function FitnessTipsPage({
 /**
  * Adds a new tip to the list.
  */
-  const addTip = () => {
-    if (newTip.trim() !== '') {
-      setTips([...tips, newTip])
-      clearValue()
-    }
+  
+const addTip = () => {
+  const tip = newTip.trim()
+
+  if (tip.length < 5 || !/[a-zA-Z]/.test(tip)) {
+    alert('Please enter a meaningful fitness tip (at least 5 characters).')
+    return
   }
+
+  setTips([...tips, tip])
+  clearValue()
+}
+
 
 /**
  * Removes a tip from the list.
