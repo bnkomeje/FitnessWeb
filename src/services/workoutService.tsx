@@ -1,5 +1,5 @@
 
-import * as WorkoutRepo from '../apis/workoutRepo'
+import * as WorkoutRepo from '../repository/workoutRepo'
 import type { Workout } from '../types/Workout'
 
 export function fetchWorkouts(): Workout[] {

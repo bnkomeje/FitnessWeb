@@ -25,31 +25,31 @@ export const workoutData: Workout[] = [
   {
     id: 5,
     name: 'Lunges',
-    videoUrl: ''
+    videoUrl: 'https://www.youtube.com/watch?v=ugW5I-a5A-Q'
   },
   {
     id: 6,
     name: 'Plank',
-    videoUrl: ''
+    videoUrl: 'https://www.youtube.com/watch?v=6LqqeBtFn9M'
   },
   {
     id: 7,
     name: 'Jumping Jacks',
-    videoUrl: ''
+    videoUrl: 'https://www.youtube.com/watch?v=8M4Ce84bkFQ'
   },
   {
     id: 8,
     name: 'Cycling',
-    videoUrl: ''
+    videoUrl: 'https://www.youtube.com/watch?v=IZ8gAXI9pwM'
   },
   {
     id: 9,
     name: 'Sit-ups',
-    videoUrl: ''
+    videoUrl: 'https://www.youtube.com/watch?v=-HusJ8P4k-4'
   },
   {
     id: 10,
     name: 'Stretching',
-    videoUrl: ''
+    videoUrl: 'https://www.youtube.com/watch?v=Sl6q1igrxpk'
   }
 ]
