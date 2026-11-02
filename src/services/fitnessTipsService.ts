@@ -1,9 +1,14 @@
 
-import { getFitnessTips } from '../repositories/fitnessTipsRepository'
+import type { FitnessTip } from '../types/FitnessTip'
+import {
+  getFitnessTips,
+  addFitnessTip,
+  updateFitnessTip,
+  deleteFitnessTip
+} from '../repositories/fitnessTipsRepository'
 
 /**
  * Checks if a fitness tip is valid
- * Returns the cleaned tip
  */
 export function validateFitnessTip(input: string): string {
   const tip = input.trim()
@@ -16,8 +21,29 @@ export function validateFitnessTip(input: string): string {
 }
 
 /**
- * Gets fitness tips from the repository
+ * Gets all fitness tips
  */
-export function loadFitnessTips(): string[] {
+export function loadFitnessTips(): FitnessTip[] {
   return getFitnessTips()
+}
+
+/**
+ * Adds a valid fitness tip
+ */
+export function createFitnessTip(text: string): FitnessTip {
+  return addFitnessTip(validateFitnessTip(text))
+}
+
+/**
+ * Updates a fitness tip
+ */
+export function editFitnessTip(id: number, text: string): void {
+  updateFitnessTip(id, validateFitnessTip(text))
+}
+
+/**
+ * Removes a fitness tip
+ */
+export function removeFitnessTip(id: number): void {
+  deleteFitnessTip(id)
 }

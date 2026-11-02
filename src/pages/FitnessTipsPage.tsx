@@ -1,25 +1,24 @@
 
 import { useFormInput } from '../hooks/useFormInput'
+import { useFitnessTips } from '../hooks/useFitnessTips'
 import FitnessTipsForm from '../components/fitness-tips-form/FitnessTipsForm'
 import FitnessTipItem from '../components/fitness-tip-item/FitnessTipItem'
-import { validateFitnessTip } from '../services/fitnessTipsService'
 
 type FitnessTipsPageProps = {
   completedWorkouts: number
   setCompletedWorkouts: React.Dispatch<React.SetStateAction<number>>
-  tips: string[]
-  setTips: React.Dispatch<React.SetStateAction<string[]>>
 }
 
 /**
  * Shows the fitness tips page
+ * Uses hook, service and repository to manage tips
  */
 function FitnessTipsPage({
   completedWorkouts,
-  setCompletedWorkouts,
-  tips,
-  setTips
+  setCompletedWorkouts
 }: FitnessTipsPageProps) {
+  const { tips, addTip, deleteTip } = useFitnessTips()
+
   const {
     value: newTip,
     setValue: setNewTip,
@@ -27,25 +26,17 @@ function FitnessTipsPage({
   } = useFormInput('')
 
   /**
-   * Adds a valid fitness tip
+   * Adds a new fitness tip
    */
-  const addTip = () => {
+  const handleAddTip = () => {
     try {
-      const tip = validateFitnessTip(newTip)
-      setTips([...tips, tip])
+      addTip(newTip)
       clearValue()
     } catch (error) {
       if (error instanceof Error) {
         alert(error.message)
       }
     }
-  }
-
-  /**
-   * Removes a fitness tip
-   */
-  const removeTip = (indexToRemove: number) => {
-    setTips(tips.filter((_, index) => index !== indexToRemove))
   }
 
   return (
@@ -65,15 +56,15 @@ function FitnessTipsPage({
       <FitnessTipsForm
         newTip={newTip}
         setNewTip={setNewTip}
-        onAdd={addTip}
+        onAdd={handleAddTip}
       />
 
       <ul>
-        {tips.map((tip, index) => (
+        {tips.map(tip => (
           <FitnessTipItem
-            key={`${tip}-${index}`}
-            tip={tip}
-            onRemove={() => removeTip(index)}
+            key={tip.id}
+            tip={tip.text}
+            onRemove={() => deleteTip(tip.id)}
           />
         ))}
       </ul>
