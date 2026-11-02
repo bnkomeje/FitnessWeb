@@ -17,7 +17,7 @@ function FitnessTipsPage({
   completedWorkouts,
   setCompletedWorkouts
 }: FitnessTipsPageProps) {
-  const { tips, addTip, deleteTip } = useFitnessTips()
+  const { tips, addTip, updateTip, deleteTip } = useFitnessTips()
 
   const {
     value: newTip,
@@ -64,6 +64,7 @@ function FitnessTipsPage({
           <FitnessTipItem
             key={tip.id}
             tip={tip.text}
+            onEdit={(text) => updateTip(tip.id, text)}
             onRemove={() => deleteTip(tip.id)}
           />
         ))}
