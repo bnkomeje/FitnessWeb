@@ -1,5 +1,6 @@
 
 import { useState } from 'react'
+import { useFormInput } from '../hooks/useFormInput'
 import type { FormEvent } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { useWorkouts } from '../hooks/useWorkouts'
@@ -10,7 +11,10 @@ import { useWorkouts } from '../hooks/useWorkouts'
  * stores the new workout.
  */
 function AddWorkoutPage() {
-  const [workoutName, setWorkoutName] = useState('')
+  const {
+    value: workoutName,
+    setValue: setWorkoutName
+  } = useFormInput('')
   const [videoUrl, setVideoUrl] = useState('')
   const [message, setMessage] = useState('')
 
