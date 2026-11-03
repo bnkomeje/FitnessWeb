@@ -1,21 +1,46 @@
-# Sprint 1 Review and Retrospective
+# Sprint Retrospective – FitnessWeb
 
-## Bosco Nkomeje
+## 1. What Went Well in This Sprint?
 
-## What went well in the previous sprint?
+One thing that went well was the development of the Workout feature. I improved the Workout page so users can view workouts, add new workouts, remove workouts, and mark workouts as completed. I also added exercise videos that users can watch directly from the application. This made the Workout section more useful and interactive.
 
--During Sprint 1, we were able to initialize the React project and create the basic structure of our fitness application. We created different components for the application instead of putting everything into one file. This gave us a good foundation that we can continue improving in the next sprint.
+Another thing that went well was adding routing and navigation. I worked on connecting pages such as Search, Add Workout, and Help using React Router. This allowed users to move between different parts of FitnessWeb without reloading the application.
 
-We used develop as our development branch and main as the production branch. We created Pull Requests and merged completed work into develop before eventually merging develop into main. By the end of the sprint, I had a much better understanding of why we should not make every change directly on main.
+Collaboration with my teammate also went well. We worked on different features using separate branches and used pull requests to bring our work into the `develop` branch. For example, my teammate worked on the Fitness Tips feature while I worked on other parts of the application. We reviewed each other's pull requests before merging them.
 
-When there was confusion about tasks, branches, or project requirements, discussing the problem as a team helped us understand what needed to happen next. Working with another developer also helped me see how important communication is when multiple people are contributing to the same project.
+I also improved my understanding of React state and props. The workout data is stored in state and can be passed to different pages. For example, the Search page uses the existing workout data to find workouts by name.
 
-## What could have gone better in the previous sprint?
 
-We focused on completing our individual tasks, but testing the combined application is also important. A component can work correctly on one branch but cause a problem after it is combined with another developer's changes. Testing develop after each important merge would have helped us discover these problems earlier.
+## 2. What Could Have Gone Better in This Sprint?
 
-After we merged develop into main, I was unsure about the deployment process and which front-end link needed to be submitted for the Sprint Review. This took extra time near the deadline.
+One challenge was working on shared files. My teammate and I sometimes needed to modify files such as `App.tsx`, `Layout.tsx`, and the Help page. This meant I had to make sure that I had the latest version of `develop` before continuing my work.
 
-## What can be done in the next sprint to improve my process?
+I also had some problems when adding new routes. For example, after creating the Help page, the Help navigation link was still pointing to `/`. This caused the Home page to appear when Help was clicked. I had to change the navigation link to `/help` and make sure the Help route existed in `App.tsx`.
 
-During Sprint 2, before changing shared files or components that another team member may also be using, I will confirm who is responsible for that work. I will also communicate when my Pull Request is ready to be reviewed. My goal is to avoid two people making conflicting changes to the same feature during the sprint.
+Another challenge was that adding one feature sometimes required changes in several files. For example, adding Search required creating the Search page, adding the route, passing workout data to the page, and updating the navigation. Missing one of these steps caused the feature not to work as expected.
+
+Testing could also have been done earlier. Some problems were found after I had already made several changes. Testing after each small change would have made it easier to identify and fix problems.
+
+
+## 3. What Can I Do in the Next Sprint to Improve My Process?
+
+### Goal 1: Keep My Branch Updated
+
+Before starting each new feature in the next sprint, I will pull the latest changes from the `develop` branch before creating or continuing my feature branch.
+
+My goal is to do this before starting 100% of my assigned features during the next sprint. This will help reduce merge conflicts between my work and my teammate's work.
+
+
+### Goal 2: Test Every Feature Before Creating a Pull Request
+
+During the next sprint, I will manually test every feature I complete before creating a pull request.
+
+I will check that the page loads, navigation works, buttons perform the expected actions, and the feature does not break existing pages. My goal is to test 100% of my completed features before requesting a review from my teammate.
+
+
+### Goal 3: Finish Tasks Earlier
+
+I will aim to complete my assigned coding tasks at least two days before the next Sprint Review.
+
+I will use the remaining time to test the application, fix problems, review my teammate's pull requests, and update documentation. This will help reduce last-minute work before submission.
+
