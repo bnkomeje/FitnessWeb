@@ -9,11 +9,12 @@ import SearchPage from './pages/SearchPage'
 import WorkoutPage from './pages/WorkoutPage'
 import AddWorkoutPage from './pages/AddWorkoutPage'
 import HelpPage from './pages/HelpPage'
-/* import FitnessTipsPage from './pages/FitnessTipsPage' */
+import FitnessTipsPage from './pages/FitnessTipsPage'
+import GoalsPage from './pages/GoalsPage'
 
 function App() {
-  const [completedWorkouts, setCompletedWorkouts] =
-    useState(0)
+  const [completedWorkouts, setCompletedWorkouts] = useState(0)
+  const [goals, setGoals] = useState<string[]>([])
 
   return (
     <Routes>
@@ -35,10 +36,15 @@ function App() {
           }
         />
 
-        /* <Route
+        <Route
           path="fitness-tips"
-          
-        /> */
+          element={
+            <FitnessTipsPage
+              completedWorkouts={completedWorkouts}
+              setCompletedWorkouts={setCompletedWorkouts}
+            />
+          }
+        />
 
         <Route
           path="add-workout"
@@ -48,6 +54,16 @@ function App() {
         <Route
           path="help"
           element={<HelpPage />}
+        />
+
+        <Route
+          path="goals"
+          element={
+            <GoalsPage
+              goals={goals}
+              setGoals={setGoals}
+            />
+          }
         />
       </Route>
     </Routes>

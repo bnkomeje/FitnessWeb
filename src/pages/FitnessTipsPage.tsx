@@ -1,42 +1,42 @@
-import { useState } from 'react'
+
+import { useFormInput } from '../hooks/useFormInput'
+import { useFitnessTips } from '../hooks/useFitnessTips'
 import FitnessTipsForm from '../components/fitness-tips-form/FitnessTipsForm'
 import FitnessTipItem from '../components/fitness-tip-item/FitnessTipItem'
 
-/**
- * Shows the fitness tips page.
- */
 type FitnessTipsPageProps = {
   completedWorkouts: number
   setCompletedWorkouts: React.Dispatch<React.SetStateAction<number>>
 }
 
+/**
+ * Shows the fitness tips page
+ * Uses hook, service and repository to manage tips
+ */
 function FitnessTipsPage({
   completedWorkouts,
   setCompletedWorkouts
 }: FitnessTipsPageProps) {
-  const [newTip, setNewTip] = useState('')
+  const { tips, addTip, updateTip, deleteTip } = useFitnessTips()
 
-  const [tips, setTips] = useState<string[]>([
-    'Stay hydrated',
-    'Warm up before exercising',
-    'Get enough sleep'
-  ])
+  const {
+    value: newTip,
+    setValue: setNewTip,
+    clearValue
+  } = useFormInput('')
 
-/**
- * Adds a new tip to the list.
- */
-  const addTip = () => {
-    if (newTip.trim() !== '') {
-      setTips([...tips, newTip])
-      setNewTip('')
+  /**
+   * Adds a new fitness tip
+   */
+  const handleAddTip = () => {
+    try {
+      addTip(newTip)
+      clearValue()
+    } catch (error) {
+      if (error instanceof Error) {
+        alert(error.message)
+      }
     }
-  }
-
-/**
- * Removes a tip from the list.
- */
-  const removeTip = (indexToRemove: number) => {
-    setTips(tips.filter((_, index) => index !== indexToRemove))
   }
 
   return (
@@ -56,16 +56,16 @@ function FitnessTipsPage({
       <FitnessTipsForm
         newTip={newTip}
         setNewTip={setNewTip}
-        onAdd={addTip}
+        onAdd={handleAddTip}
       />
 
-      {/* Displays all fitness tips. */}
       <ul>
-        {tips.map((tip, index) => (
+        {tips.map(tip => (
           <FitnessTipItem
-            key={`${tip}-${index}`}
-            tip={tip}
-            onRemove={() => removeTip(index)}
+            key={tip.id}
+            tip={tip.text}
+            onEdit={(text) => updateTip(tip.id, text)}
+            onRemove={() => deleteTip(tip.id)}
           />
         ))}
       </ul>
