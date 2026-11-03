@@ -1,3 +1,4 @@
+
 import { useState } from 'react'
 import { Routes, Route } from 'react-router-dom'
 import './App.css'
@@ -9,46 +10,26 @@ import WorkoutPage from './pages/WorkoutPage'
 import AddWorkoutPage from './pages/AddWorkoutPage'
 import HelpPage from './pages/HelpPage'
 import FitnessTipsPage from './pages/FitnessTipsPage'
-
-import type { Workout } from './types/Workout'
-import { initialWorkouts } from './data/workouts'
 import GoalsPage from './pages/GoalsPage'
+
 function App() {
-
-  const [completedWorkouts, setCompletedWorkouts] =
-    useState(0)
-
-  const [workouts, setWorkouts] =
-    useState<Workout[]>(initialWorkouts)
-  
-  const [goals, setGoals] = useState<string[]>([])  
-
+  const [completedWorkouts, setCompletedWorkouts] = useState(0)
+  const [goals, setGoals] = useState<string[]>([])
 
   return (
     <Routes>
-
       <Route path="/" element={<Layout />}>
-
-        <Route
-          index
-          element={<Home />}
-        />
+        <Route index element={<Home />} />
 
         <Route
           path="search"
-          element={
-            <SearchPage
-              workouts={workouts}
-            />
-          }
+          element={<SearchPage />}
         />
 
         <Route
           path="workouts"
           element={
             <WorkoutPage
-              workouts={workouts}
-              setWorkouts={setWorkouts}
               completedWorkouts={completedWorkouts}
               setCompletedWorkouts={setCompletedWorkouts}
             />
@@ -61,18 +42,13 @@ function App() {
             <FitnessTipsPage
               completedWorkouts={completedWorkouts}
               setCompletedWorkouts={setCompletedWorkouts}
-          />
+            />
           }
         />
 
         <Route
           path="add-workout"
-          element={
-            <AddWorkoutPage
-              workouts={workouts}
-              setWorkouts={setWorkouts}
-            />
-          }
+          element={<AddWorkoutPage />}
         />
 
         <Route
@@ -89,9 +65,7 @@ function App() {
             />
           }
         />
-
       </Route>
-
     </Routes>
   )
 }
