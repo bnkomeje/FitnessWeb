@@ -12,7 +12,8 @@ type WorkoutFormProps = {
 
   addWorkout: () => void
 }
-
+// WorkoutForm already receives newWorkout and setNewWorkout but 
+// also received from useFormInput hook?
 function WorkoutForm({
   newWorkout,
   setNewWorkout,

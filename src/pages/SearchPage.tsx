@@ -23,6 +23,8 @@ function SearchPage() {
     error: workoutError
   } = useWorkouts()
 
+  // service is being called directly from a component and not a hook?
+  // have you considered moving searchWorkouts Service into useWorkouts hook?
   const filteredWorkouts = useMemo(() => {
     return WorkoutService.searchWorkouts(searchTerm)
   }, [searchTerm, workouts])

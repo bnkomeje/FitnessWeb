@@ -9,6 +9,8 @@ type GoalsPageProps = {
 function GoalsPage({ goals, setGoals }: GoalsPageProps) {
   const [newGoal, setNewGoal] = useState('')
 
+  // validating goal length is a rule and should live in services layer. Multiple 
+  // responsibilities should be separated out into respective functions/components.
   function addGoal() {
     const goal = newGoal.trim()
 
